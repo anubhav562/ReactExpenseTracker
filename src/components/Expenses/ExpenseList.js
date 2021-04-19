@@ -2,7 +2,7 @@ import './ExpenseList.css';
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card'
 
-function ExpenseList(props) {
+const ExpenseList = (props) => {
     const itemList = props.itemList
     console.log(itemList)
 
