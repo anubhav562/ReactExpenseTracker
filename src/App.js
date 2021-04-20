@@ -21,9 +21,15 @@ const App = () => {
     }
   ]
 
+  const addNewExpensetoListHandler = (Expense) => {
+    console.log(Expense)
+    itemList.push(Expense)
+    console.log(itemList)
+  } 
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addNewExpensetoListHandler}/>
       <ExpenseList itemList={itemList}/>
     </div>
   );
