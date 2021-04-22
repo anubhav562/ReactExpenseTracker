@@ -8,17 +8,23 @@ const ExpenseList = (props) => {
     const itemList = props.itemList
     const [dropDownValue, setDropDownValue] = useState('')
 
+    const filterExpensesByDropDownYear = (year) => {
+        return function(expenseObject) {
+            return expenseObject.date.getFullYear() == year
+        }
+    }
+
     const saveDropDownValueHandler = (dropDownData) => {
         setDropDownValue(dropDownData)
-        console.log(dropDownValue)
     }
+
+    const filteredItemList = itemList.filter(filterExpensesByDropDownYear(dropDownValue))
+    console.log(filteredItemList)
 
     return (
             <Card className="expenses">
                 <ExpensesFilter onDropDownChange={saveDropDownValueHandler}/>
-                <ExpenseItem title={itemList[0].title} date={itemList[0].date} price={itemList[0].price}></ExpenseItem>
-                <ExpenseItem title={itemList[1].title} date={itemList[1].date} price={itemList[1].price}></ExpenseItem>
-                <ExpenseItem title={itemList[2].title} date={itemList[2].date} price={itemList[2].price}></ExpenseItem>
+                {filteredItemList.map(item => { return <ExpenseItem title={item.title} date={item.date} price={item.price} />})}
             </Card>
     )
 

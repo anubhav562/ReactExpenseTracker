@@ -25,8 +25,10 @@ const ExpenseForm = (props) => {
         const formData = {
             title: event.target[0].value,
             price: event.target[1].value,
-            date: event.target[2].value
+            date: new Date(event.target[2].value)
         };
+
+        console.log(formData)
         props.onAddExpense(formData)
         setTitle('');
         setPrice('');
